@@ -59,6 +59,7 @@ doxygen/
 .vscode/ipch/
 .stfolder
 .tags
+.nova
 
 # ignore image files
 *.png
