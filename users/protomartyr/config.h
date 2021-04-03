@@ -1,16 +1,12 @@
-// this makes it possible to do rolling combos (zx) with keys that
-// convert to other keys on hold (z becomes ctrl when you hold it,
-// and when this option isn't enabled, z rapidly followed by x
-// actually sends Ctrl-x. That's bad.)
-#define IGNORE_MOD_TAP_INTERRUPT
-// #define PERMISSIVE_HOLD
-// #define TAPPING_FORCE_HOLD
-// #define RETRO_TAPPING
-
-// #define FORCE_NKRO
-
-#ifdef TAPPING_TERM
-#undef TAPPING_TERM
+// Configure the global tapping term (default: 200ms)
 #define TAPPING_TERM 200
-#endif // TAPPING_TERM
+
+// Prevent normal rollover on alphas from accidentally triggering mods.
+#define IGNORE_MOD_TAP_INTERRUPT
+
+// Enable rapid switch from tap to hold, disables double tap hold auto-repeat.
+#define TAPPING_FORCE_HOLD
+
+// Apply the modifier on keys that are tapped during a short hold of a modtap
+#define PERMISSIVE_HOLD
 
