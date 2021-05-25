@@ -14,7 +14,11 @@
 /* Control when held, Escape when tapped */
 #define ESC_CTL MT(MOD_LCTL, KC_ESC)
 
+#define MIC_MUTE LSFT(LGUI(KC_W)) // SHIFT+CMD+M Global Mic Mute using MuteKey.app
+#define TEAMS_MUTE LSFT(LGUI(KC_M)) // SHIFT+CMD+M Mute the mic in MS Teams
 #define MACOSLK LCTL(LGUI(KC_Q)) // CTRL+CMD+Q == screen lock in macOS 10.13+
+#define BUSY_RED MEH(KC_R) // KeyboardMaestro macro to change Meross RGB light red
+#define BUSY_GRN MEH(KC_G) // KeyboardMaestro macro to change Meross RGB light green
 #define EJ_ALL MEH(KC_E) // KeyboardMaestro macro to eject all external disks
 #define SN_THINGS MEH(KC_T) // KeyboardMaestro macro to add SN ticket to Things
 #define NEW_NOTE MEH(KC_U) // KeyboardMaestro macro to create new scratch note in Ulysses
@@ -65,12 +69,12 @@
 #define _____________________QWERTY_L1______________________ KC_TAB,  KC_Q,  KC_W,  KC_E,  KC_R,  KC_T
 #define _____________________QWERTY_L2______________________ ESC_CTL, KC_A,  KC_S,  KC_D,  KC_F,  KC_G
 #define ___________________QWERTY_L2_MODS___________________ ESC_CTL, CTL_A, ALT_S, GUI_D, SFT_F, KC_G
-#define _____________________QWERTY_L3______________________ XXXXXXX, KC_Z,  KC_X,  KC_C,  KC_V,  KC_B
+#define _____________________QWERTY_L3______________________ KC_LSFT, KC_Z,  KC_X,  KC_C,  KC_V,  KC_B
 
 #define _____________________QWERTY_R1______________________ KC_Y, KC_U,  KC_I,    KC_O,   KC_P,     KC_BSLS
 #define _____________________QWERTY_R2______________________ KC_H, KC_J,  KC_K,    KC_L,   KC_SCLN,  KC_QUOT
 #define ___________________QWERTY_R2_MODS___________________ KC_H, SFT_J, GUI_K,   ALT_L,  CTL_SCLN, KC_QUOT
-#define _____________________QWERTY_R3______________________ KC_N, KC_M,  KC_COMM, KC_DOT, KC_SLSH,  KC_ENT
+#define _____________________QWERTY_R3______________________ KC_N, KC_M,  KC_COMM, KC_DOT, KC_SLSH,  KC_SFTENT
 
 #define _____________________NUM_LEFT_______________________ KC_GRV, KC_1, KC_2, KC_3, KC_4, KC_5
 #define _____________________NUM_RIGHT______________________ KC_6,  KC_7, KC_8, KC_9, KC_0, KC_MINS
@@ -130,8 +134,10 @@
 #define _________MEDIA_3_________ XXXXXXX, KC_MRWD, KC__VOLDOWN
 
 #if defined(KEYBOARD_kyria_rev1)
-  #define ________MOD_LEFT_________ KC_LCTL, KC_LALT, LOWER
-  #define ________MOD_RIGHT________ RAISE,   KC_DOWN, KC_UP
+  #define ________MOD_LEFT_________ KC_LALT, KC_LGUI, LOWER
+  #define ________MOD_RIGHT________ RAISE,   KC_LCTL, KC_LGUI
+  #undef _____________________QWERTY_R3______________________
+  #define _____________________QWERTY_R3______________________ KC_N, KC_M,  KC_COMM, KC_DOT, KC_SLSH,  KC_MPLY
 #else
   #define _____________MOD_LEFT______________ KC_MEH, KC_LCTL, KC_LALT, KC_LGUI,  LOWER
   #define _____________MOD_RIGHT_____________ RAISE,  KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
