@@ -1,1 +1,2 @@
-SRC += protomartyr.c
+SRC += protomartyr.c \
+		oled.c

@@ -14,7 +14,7 @@
 /* Control when held, Escape when tapped */
 #define ESC_CTL MT(MOD_LCTL, KC_ESC)
 
-#define MIC_MUTE LSFT(LGUI(KC_W)) // SHIFT+CMD+M Global Mic Mute using MuteKey.app
+#define MIC_MUTE HYPR(KC_W) // CTRL+ALT+SHIFT+CMD+W Global Mic Mute using MuteKey.app
 #define TEAMS_MUTE LSFT(LGUI(KC_M)) // SHIFT+CMD+M Mute the mic in MS Teams
 #define MACOSLK LCTL(LGUI(KC_Q)) // CTRL+CMD+Q == screen lock in macOS 10.13+
 #define BUSY_RED MEH(KC_R) // KeyboardMaestro macro to change Meross RGB light red
@@ -37,7 +37,15 @@
     uint16_t encoder_rotated_timer;
 #endif
 
-
+#if !defined(KEYBOARD_wilba_tech_wt8a)
+  #define _QWERTY 0
+  #define _DVORAK 1
+  #define _COLEMAK 2
+  #define _LOWER 3
+  #define _RAISE 4
+  #define _ADJUST 5
+  #define _NUMPAD 6
+#endif
 
 // Shortcut Keys
 #define K_LOCK LGUI(LCTL(KC_Q)) // Locks screen on MacOS
@@ -86,7 +94,7 @@
 #define _____________________SYM_RIGHT______________________ KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_UNDS
 
 #define _____________________LOWER_L1_______________________ _____________________SYM_LEFT_______________________
-#define _____________________LOWER_L2_______________________ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+#define _____________________LOWER_L2_______________________ RGB_MOD, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
 #define _____________________LOWER_L3_______________________ KC_LSFT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
 
 #define _____________________LOWER_R1_______________________ _____________________SYM_RIGHT______________________
@@ -138,6 +146,11 @@
   #define ________MOD_RIGHT________ RAISE,   KC_LCTL, KC_LGUI
   #undef _____________________QWERTY_R3______________________
   #define _____________________QWERTY_R3______________________ KC_N, KC_M,  KC_COMM, KC_DOT, KC_SLSH,  KC_MPLY
+#elif defined(KEYBOARD_crkbd_rev1)
+  // #define ________MOD_LEFT_________ KC_LGUI, LOWER, KC_BSPC
+  // #define ________MOD_RIGHT________ KC_SPC,  RAISE, KC_LALT
+  #define ________MOD_LEFT_________ KC_LGUI, KC_BSPC, LT_LOW
+  #define ________MOD_RIGHT________ LT_RAI, KC_LCTL, KC_LALT
 #else
   #define _____________MOD_LEFT______________ KC_MEH, KC_LCTL, KC_LALT, KC_LGUI,  LOWER
   #define _____________MOD_RIGHT_____________ RAISE,  KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
@@ -150,6 +163,6 @@
     #define LAYOUT_wrapper(...) LAYOUT_ortho_4x12(__VA_ARGS__)
 #elif defined(KEYBOARD_boardwalk)
     #define LAYOUT_wrapper(...) LAYOUT_ortho_2x2u(__VA_ARGS__)
-#elif defined(KEYBOARD_kyria_rev1)
+#elif defined(KEYBOARD_kyria_rev1) || defined(KEYBOARD_crkbd_rev1)
     #define LAYOUT_wrapper(...) LAYOUT(__VA_ARGS__)
 #endif
